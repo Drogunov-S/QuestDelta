@@ -1,6 +1,8 @@
 package ua.com.javarush.quest.drogunov.quest.mapping;
 
 import ua.com.javarush.quest.drogunov.quest.dto.FormData;
+import ua.com.javarush.quest.drogunov.quest.dto.ui.QuestDto;
+import ua.com.javarush.quest.drogunov.quest.entity.Quest;
 
 import java.util.Optional;
 

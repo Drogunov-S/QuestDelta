@@ -2,6 +2,8 @@ package ua.com.javarush.quest.drogunov.quest.mapping;
 
 import lombok.SneakyThrows;
 import ua.com.javarush.quest.drogunov.quest.dto.FormData;
+import ua.com.javarush.quest.drogunov.quest.dto.ui.*;
+import ua.com.javarush.quest.drogunov.quest.entity.*;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

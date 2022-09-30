@@ -1,6 +1,8 @@
 package ua.com.javarush.quest.drogunov.quest.mapping;
 
 import ua.com.javarush.quest.drogunov.quest.dto.FormData;
+import ua.com.javarush.quest.drogunov.quest.dto.ui.GameDto;
+import ua.com.javarush.quest.drogunov.quest.entity.Game;
 
 import java.util.Optional;
 class GameMapper implements Mapper<Game, GameDto> {
@@ -9,7 +11,7 @@ class GameMapper implements Mapper<Game, GameDto> {
         return game != null
                 ? Optional.of(GameDto.with()
                 .id(game.getId())
-                .questId(game.getUserid())
+                .questId(game.getUserId())
                 .gameState(game.getGameState())
                 .userId(game.getUserId())
                 .build())

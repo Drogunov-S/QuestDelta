@@ -18,7 +18,11 @@ public class Go {
     public final String CREATE = "/create";
     public final String QUEST = "/quest";
     public final String QUESTS = "/quests";
-    public final String START = "/start";
+    public final String STAT = "/stat";
     public final String GAME = "/game";
+
+    public class Parts {
+        public final String IMAGES = "/images/";
+    }
 
 }

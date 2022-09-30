@@ -1,6 +1,8 @@
 package ua.com.javarush.quest.drogunov.quest.mapping;
 
 import ua.com.javarush.quest.drogunov.quest.dto.FormData;
+import ua.com.javarush.quest.drogunov.quest.dto.ui.AnswerDto;
+import ua.com.javarush.quest.drogunov.quest.entity.Answer;
 
 import java.util.Optional;
 
@@ -12,14 +14,14 @@ class AnswerMapper implements Mapper<Answer, AnswerDto> {
                 ? Optional.of(AnswerDto.with()
                 .id(answer.getId())
                 .text(answer.getText())
-                .nextQuestion(answer.getNextQuestion())
+                .nextQuestionId(answer.getNextQuestionId())
                 .build())
                 : Optional.empty();
     }
 
     @Override
     public Answer parse(FormData formData) {
-        Answer quest = Answer.with.build();
+        Answer quest = Answer.with().build();
         return fill(quest, formData);
     }
 }
