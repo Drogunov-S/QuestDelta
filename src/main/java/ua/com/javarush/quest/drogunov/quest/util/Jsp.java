@@ -14,27 +14,23 @@ public class Jsp {
 
     @UtilityClass
     public class Key {
-        public final String ID = "id";
-
-        public final String USER = "user";
-        public final String USERS = "users";
-
-        public final String ROLES = "roles";
-
-        public final String QUEST = "quest";
-        public final String QUESTS = "quests";
-        public final String QUESTION = "question";
-
-        public final String ERROR_MASSAGE = "errorMassage";
-        public final String GAME = "game";
-        public final String ANSWER = "answer";
+        public static final String ID = "id";
+        public static final String USER = "user";
+        public static final String USERS = "users";
+        public static final String ROLES = "roles";
+        public static final String QUEST = "quest";
+        public static final String QUESTS = "quests";
+        public static final String QUESTION = "question";
+        public static final String ERROR_MASSAGE = "errorMassage";
+        public static final String GAME = "game";
+        public static final String ANSWER = "answer";
 
     }
 
     @UtilityClass
     public class CRUD {
-        public final String UPDATE = "update";
-        public final String DELETE = "delete";
+        public static final String UPDATE = "update";
+        public static final String DELETE = "delete";
     }
 
     public void forward(HttpServletRequest req, HttpServletResponse resp, String uri)

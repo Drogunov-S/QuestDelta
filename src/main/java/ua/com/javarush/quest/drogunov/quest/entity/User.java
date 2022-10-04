@@ -11,10 +11,10 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder(builderMethodName = "with")
 public class User extends Entity {
-    protected Long id;
-    protected String login;
-    protected String password;
-    protected Role role;
+    Long id;
+    String login;
+    String password;
+    Role role;
     final Collection<Game> games = new ArrayList<>();
     final Collection<Quest> quests = new ArrayList<>();
 

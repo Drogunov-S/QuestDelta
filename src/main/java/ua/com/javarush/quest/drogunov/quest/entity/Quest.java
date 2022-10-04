@@ -11,9 +11,9 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder(builderMethodName = "with")
 public class Quest extends Entity {
-    protected String name;
-    protected Long id;
-    protected Long authorId;
-    protected Long startQuestionId;
+    String name;
+    Long id;
+    Long authorId;
+    Long startQuestionId;
     final Collection<Question> questions = new ArrayList<>();
 }

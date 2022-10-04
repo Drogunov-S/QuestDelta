@@ -9,9 +9,9 @@ import lombok.EqualsAndHashCode;
 @Builder(builderMethodName = "with")
 public class Answer extends Entity {
 
-    protected Long id;
-    protected Long questionId;
-    protected String text;
-    protected Long nextQuestionId;
+    Long id;
+    Long questionId;
+    String text;
+    Long nextQuestionId;
 
 }

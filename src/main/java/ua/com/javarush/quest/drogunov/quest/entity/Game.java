@@ -8,9 +8,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @Builder(builderMethodName = "with")
 public class Game extends Entity {
-    protected Long id;
-    protected Long questId;
-    protected Long userId;
-    protected Long currentQuestionId;
+    Long id;
+    Long questId;
+    Long userId;
+    Long currentQuestionId;
     GameState gameState;
 }

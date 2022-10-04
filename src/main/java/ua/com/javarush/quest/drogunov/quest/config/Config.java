@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.Arrays;
 
 public enum Config {
-
     DB_FOLDER("db.folder", "db"),
     DB_JSON("db.json", "tree.json");
 
@@ -43,10 +42,4 @@ public enum Config {
     public String get() {
         return value;
     }
-
-
-    // TODO Вместо тестов?)
-//    public static void main(String[] args) {
-//        System.out.println(DB_FOLDER + "/" + DB_JSON);
-//    }
 }

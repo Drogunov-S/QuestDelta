@@ -12,10 +12,10 @@ import java.util.Collection;
 @Builder(builderMethodName = "with")
 public class Question extends Entity {
 
-    protected Long id;
-    protected Long questId;
-    protected String text;
-    protected GameState state;
+    Long id;
+    Long questId;
+    String text;
+    GameState state;
     final Collection<Answer> answers = new ArrayList<>();
 
     public String getImage() {

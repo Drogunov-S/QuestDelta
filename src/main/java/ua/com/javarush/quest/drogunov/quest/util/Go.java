@@ -4,25 +4,23 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Go {
-    public final String HOME = "";
-    public final String ROOT = "/";
-    public final String ALL = "/*";
-
-    public final String SIGNUP = "/signup";
-    public final String LOGIN = "/login";
-    public final String LOGOUT = "/logout";
-    public final String PROFILE = "/profile";
-    public final String USERS = "/users";
-    public final String EDIT_USER = "/edit-user";
-
-    public final String CREATE = "/create";
-    public final String QUEST = "/quest";
-    public final String QUESTS = "/quests";
-    public final String STAT = "/stat";
-    public final String GAME = "/game";
+    public static final String HOME = "";
+    public static final String ROOT = "/";
+    public static final String ALL = "/*";
+    public static final String SIGNUP = "/signup";
+    public static final String LOGIN = "/login";
+    public static final String LOGOUT = "/logout";
+    public static final String PROFILE = "/profile";
+    public static final String USERS = "/users";
+    public static final String EDIT_USER = "/edit-user";
+    public static final String CREATE = "/create";
+    public static final String QUEST = "/quest";
+    public static final String QUESTS = "/quests";
+    public static final String STAT = "/stat";
+    public static final String GAME = "/game";
 
     public class Parts {
-        public final String IMAGES = "/images/";
+        public static final String IMAGES = "/images/";
     }
 
 }
