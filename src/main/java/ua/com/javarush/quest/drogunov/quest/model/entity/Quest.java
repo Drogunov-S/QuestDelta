@@ -1,4 +1,4 @@
-package ua.com.javarush.quest.drogunov.quest.entity;
+package ua.com.javarush.quest.drogunov.quest.model.entity;
 
 import lombok.*;
 
@@ -14,11 +14,13 @@ import java.util.List;
 @Table(name = "quests", schema = "quest")
 public class Quest extends BaseEntity {
     @Column(name = "name")
-    String name;
-    @OneToMany
+    private String name;
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "quest_id")
-    List<Question> questions;
+    private List<Question> questions;
     @OneToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
-    User author;
+    private User author;
 }

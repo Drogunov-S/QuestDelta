@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `quest`.`quests` (
                                                 `id` BIGINT NOT NULL AUTO_INCREMENT,
                                                 `author_id` BIGINT NOT NULL,
                                                 `name` VARCHAR(45) NOT NULL,
+                                                `description` TEXT NOT NULL,
                                                 `create_date` TIMESTAMP NULL,
                                                 `update_date` TIMESTAMP NULL,
                                                 PRIMARY KEY (`id`),
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `quest`.`answers` (
                                                  `update_date` TIMESTAMP NULL,
                                                  PRIMARY KEY (`id`),
                                                  INDEX `fk_answers_questions1_idx` (`question_id` ASC) VISIBLE,
-                                                 CONSTRAINT `fk_answers_questions1`
+                                                 CONSTRAINT `fk_answers_questions`
                                                      FOREIGN KEY (`question_id`)
                                                          REFERENCES `quest`.`questions` (`id`)
                                                          ON DELETE NO ACTION
@@ -123,6 +124,73 @@ CREATE TABLE IF NOT EXISTS `quest`.`games` (
                                                        ON DELETE NO ACTION
                                                        ON UPDATE NO ACTION)
     ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`.`users`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `quest`;
+INSERT INTO `quest`.`users` (`id`, `login`, `password`, `role`, `create_date`, `update_date`) VALUES (1, 'ivan', '1234', 'USER', '2023-01-06 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`users` (`id`, `login`, `password`, `role`, `create_date`, `update_date`) VALUES (2, 'sergey', 'qwerty', 'ADMIN', '2023-01-07 02:23:33', '2023-01-08 02:23:33');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`.`quests`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `quest`;
+INSERT INTO `quest`.`quests` (`id`, `author_id`, `name`, `description`, `create_date`, `update_date`) VALUES (1, 2, 'Find JavaDev', 'In qust your will find javadevolopers in world', '2023-01-01 02:23:33', '2023-01-08 02:23:12');
+INSERT INTO `quest`.`quests` (`id`, `author_id`, `name`, `description`, `create_date`, `update_date`) VALUES (2, 1, 'Find User Quest', 'Your gaming for user', '2023-01-02 02:23:33', '2023-01-08 02:23:55');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`.`answers`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `quest`;
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (1, 1, 'First answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (2, 1, 'Second answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (3, 1, 'Third answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (4, 2, 'Four answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (5, 2, 'Five answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (6, 2, 'SIx answer', '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (7, 3, 'Seven answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (8, 3, 'Eight answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (9, 3, 'Nine answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (10, 4, 'Ten answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (11, 4, 'Eleven answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+INSERT INTO `quest`.`answers` (`id`, `question_id`, `answer`, `create_date`, `update_date`) VALUES (12, 4, 'Twelw answer', '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`.`questions`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `quest`;
+INSERT INTO `quest`.`questions` (`id`, `quest_id`, `question`, `true_answer_id`, `create_date`, `update_date`) VALUES (1, 1, 'Who JavaDev?', 1, '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`questions` (`id`, `quest_id`, `question`, `true_answer_id`, `create_date`, `update_date`) VALUES (2, 1, 'Two questions Java dev', 4, '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`questions` (`id`, `quest_id`, `question`, `true_answer_id`, `create_date`, `update_date`) VALUES (3, 2, 'Who User?', 7, '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`questions` (`id`, `quest_id`, `question`, `true_answer_id`, `create_date`, `update_date`) VALUES (4, 2, 'Two answer user', 10, '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`.`games`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `quest`;
+INSERT INTO `quest`.`games` (`id`, `user_id`, `quest_id`, `last_question_id`, `create_date`, `update_date`) VALUES (1, 1, 1, 1, '2023-01-08 02:23:33', '2023-01-08 02:23:33');
+INSERT INTO `quest`.`games` (`id`, `user_id`, `quest_id`, `last_question_id`, `create_date`, `update_date`) VALUES (2, 2, 2, 2, '2023-01-08 02:28:42', '2023-01-08 02:28:42');
+
+COMMIT;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

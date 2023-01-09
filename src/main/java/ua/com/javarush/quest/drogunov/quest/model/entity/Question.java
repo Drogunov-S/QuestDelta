@@ -1,4 +1,4 @@
-package ua.com.javarush.quest.drogunov.quest.entity;
+package ua.com.javarush.quest.drogunov.quest.model.entity;
 
 import lombok.*;
 
@@ -15,10 +15,10 @@ import java.util.Set;
 public class Question extends BaseEntity {
     @Column(name = "question", columnDefinition = "text")
     private String question;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id", referencedColumnName = "id")
-    Set<Answer> answers;
+    private Set<Answer> answers;
     @OneToOne
     @JoinColumn(name = "true_answer_id")
-    Answer trueAnswer;
+    private Answer trueAnswer;
 }

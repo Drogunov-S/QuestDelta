@@ -1,4 +1,4 @@
-package ua.com.javarush.quest.drogunov.quest.entity;
+package ua.com.javarush.quest.drogunov.quest.model.entity;
 
 import lombok.*;
 
@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Game extends BaseEntity {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
     @OneToOne
     @JoinColumn(name = "quest_id", referencedColumnName = "id")
     private Quest quest;

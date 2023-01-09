@@ -1,7 +1,7 @@
 package ua.com.javarush.quest.drogunov.quest;
 
 import org.hibernate.Session;
-import ua.com.javarush.quest.drogunov.quest.entity.*;
+import ua.com.javarush.quest.drogunov.quest.model.entity.*;
 import ua.com.javarush.quest.drogunov.quest.util.DbSession;
 
 import java.util.List;
@@ -36,6 +36,7 @@ public class Runner {
         Quest quest = new Quest();
         quest.setAuthor(user);
         quest.setName("First quest");
+        quest.setDescription("description 1");
         quest.setQuestions(List.of(question1, question2));
         Game game = new Game();
         game.setQuest(quest);

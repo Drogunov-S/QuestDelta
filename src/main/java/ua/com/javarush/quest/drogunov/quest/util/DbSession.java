@@ -3,7 +3,7 @@ package ua.com.javarush.quest.drogunov.quest.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import ua.com.javarush.quest.drogunov.quest.entity.*;
+import ua.com.javarush.quest.drogunov.quest.model.entity.*;
 
 import java.util.Properties;
 
