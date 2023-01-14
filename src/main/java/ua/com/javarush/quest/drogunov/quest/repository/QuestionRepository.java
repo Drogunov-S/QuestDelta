@@ -7,4 +7,12 @@ public class QuestionRepository extends AbstractRepository<Question>{
     public QuestionRepository(SessionFactory sessionFactory) {
         super(sessionFactory, Question.class);
     }
+    
+    @Override
+    public Question getById(Long id) {
+        getCurrentSession().beginTransaction();
+        Question question = super.getById(id);
+        getCurrentSession().getTransaction().commit();
+        return question;
+    }
 }

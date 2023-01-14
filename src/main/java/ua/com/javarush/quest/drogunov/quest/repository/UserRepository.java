@@ -8,5 +8,11 @@ public class UserRepository extends AbstractRepository<User>{
         super(sessionFactory, User.class);
     }
     
-    
+    @Override
+    public User getById(Long id) {
+        getCurrentSession().beginTransaction();
+        User user = super.getById(id);
+        getCurrentSession().getTransaction().commit();
+        return user;
+    }
 }

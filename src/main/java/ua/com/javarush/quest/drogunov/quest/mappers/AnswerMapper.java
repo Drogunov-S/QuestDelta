@@ -10,16 +10,18 @@ public class AnswerMapper implements Mapper<Answer, AnswerDTO> {
     @Override
     public AnswerDTO parseEntity(Answer entity) {
         return AnswerDTO.builder()
+                .id(entity.getId())
                 .answer(entity.getAnswer())
                 .build();
     }
     
     @Override
     public List<AnswerDTO> parseEntityAll(Collection<Answer> entity) {
-        return entity
+        return (List<AnswerDTO>) entity
                 .stream()
                 .map(answer -> AnswerDTO
                         .builder()
+                        .id(answer.getId())
                         .answer(answer.getAnswer())
                         .build())
                 .toList();

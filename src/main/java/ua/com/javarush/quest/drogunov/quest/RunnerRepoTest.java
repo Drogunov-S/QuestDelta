@@ -25,7 +25,7 @@ public class RunnerRepoTest {
         System.out.println("////////////////////////////////////////////////");
         System.out.println(all);
         System.out.println("////////////////////////////////////////////////");
-        List<Quest> all1 = questRepository.getAll(0, 3);
+        List<Quest> all1 = questRepository.getAll(0, 2);
         System.out.println("////////////////////////////////////////////////");
         System.out.println(all1);
         System.out.println("////////////////////////////////////////////////");

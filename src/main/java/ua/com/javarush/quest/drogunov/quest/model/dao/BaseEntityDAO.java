@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class BaseEntityDAO<T> implements CrudDb<T>{
+public class BaseEntityDAO<T> implements CrudDb<T> {
     private final Class<T> aClass;
     private final SessionFactory sessionFactory;
     
@@ -13,6 +13,7 @@ public class BaseEntityDAO<T> implements CrudDb<T>{
         this.sessionFactory = sessionFactory;
         this.aClass = aClass;
     }
+    
     public T save(final T entity) {
         getCurrentSession().save(entity);
         return entity;
@@ -27,6 +28,12 @@ public class BaseEntityDAO<T> implements CrudDb<T>{
                 .createQuery("from " + aClass.getName(), aClass)
                 .setFirstResult(offset)
                 .setMaxResults(limit)
+                .list();
+    }
+    
+    public List<T> getAll() {
+        return getCurrentSession()
+                .createQuery("from " + aClass.getName(), aClass)
                 .list();
     }
     

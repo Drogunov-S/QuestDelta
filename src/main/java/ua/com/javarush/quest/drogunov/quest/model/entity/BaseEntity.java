@@ -21,4 +21,11 @@ public class BaseEntity {
     @Column(name = "update_date")
     @UpdateTimestamp
     private LocalDateTime updateDate;
+    
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                ", ";
+    }
 }

@@ -17,18 +17,24 @@ public class Runner {
         question1.setQuestion("First Question");
         Answer answer1 = new Answer();
         answer1.setAnswer("First answer");
+//        answer1.setQuestion(question1);
         Answer answer2 = new Answer();
         answer2.setAnswer("Second answer");
+//        answer2.setQuestion(question1);
         Answer answer3 = new Answer();
         answer3.setAnswer("Third answer");
+//        answer3.setQuestion(question1);
         question1.setAnswers(Set.of(answer1, answer2, answer3));
         question1.setTrueAnswer(answer1);
         Answer answer4 = new Answer();
         answer4.setAnswer("Four answer");
+//        answer4.setQuestion(question1);
         Answer answer5 = new Answer();
         answer5.setAnswer("Five answer");
+//        answer5.setQuestion(question1);
         Answer answer6 = new Answer();
         answer6.setAnswer("Second answer");
+//        answer6.setQuestion(question1);
         Question question2 = new Question();
         question2.setQuestion("Two Question");
         question2.setAnswers(Set.of(answer4, answer5, answer6));
@@ -42,9 +48,6 @@ public class Runner {
         game.setQuest(quest);
         game.setUser(user);
         game.setLastQuestion(question1);
-        System.out.println("////////////".repeat(20));
-        System.out.println(game);
-        System.out.println("////////////".repeat(20));
         Session currentSession = DbSession.getSessionFactory().getCurrentSession();
         currentSession.beginTransaction();
         currentSession.save(user);
@@ -60,6 +63,9 @@ public class Runner {
         currentSession.save(game);
         currentSession.getTransaction().commit();
     
+        System.out.println("////////////".repeat(20));
+        System.out.println(game);
+        System.out.println("////////////".repeat(20));
     }
     
     public static Set<Answer> getAnswer1() {
