@@ -31,13 +31,7 @@ public class QuestMapper implements Mapper<Quest, QuestDTO> {
     @Override
     public List<QuestDTO> parseEntityAll(Collection<Quest> entity) {
         return (List<QuestDTO>) entity.stream()
-                .map(quest -> QuestDTO.builder()
-                        .id(quest.getId())
-                        .author(userMapper.parseEntity(quest.getAuthor()))
-                        .name(quest.getName())
-                        .description(quest.getDescription())
-                        .questions(questionMapper.parseEntityAll(quest.getQuestions()))
-                        .build()
+                .map(this::parseEntity
                 )
                 .toList();
     }
@@ -56,7 +50,7 @@ public class QuestMapper implements Mapper<Quest, QuestDTO> {
     }
     
     @Override
-    public List<QuestDTO> parseDtoAll(Collection<Quest> entity) {
+    public List<Quest> parseDtoAll(Collection<QuestDTO> entity) {
         return null;
     }
 }

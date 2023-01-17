@@ -12,32 +12,35 @@
                      xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                      preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">${game.quest.name}}</text>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">${game.quest.name}</text>
                 </svg>
                 <div class="card-body">
-                    <div class="rendered-form">
-                        <div class="">
-                            <h1 access="false" id="control-1703961">${game.lastQuestion.question}</h1></div>
-                        <div class="formbuilder-checkbox-group form-group field-checkbox-group-1673222877891">
-                            <div class="checkbox-group">
-                                <form name="form" method="post" class="formbuilder-checkbox">
-                                    <c:forEach begin="0" step="1" varStatus="i" items="${game.lastQuestion.answers}"
-                                               var="answer">
-                                        <input name="checkbox-answers" access="false"
-                                               id="checkbox-answer" value="${answer.id}" type="radio">
-                                        <label for="checkbox-answer">${answer.answer}</label>
-                                        <br>
-                                    </c:forEach>
-                                    <div class="formbuilder-button form-group field-button-1673222921723">
-                                        <button type="submit" class="btn-default btn" name="button-1673222921723" access="false"
-                                                id="button-1673222921723">Button
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <c:choose>
+                    <c:when test="${game.gameState != 'END'}">
+                    <div class="">
+                        <h1 access="false"
+                            id="control-1703961">${game.lastQuestion.question} ${game.lastQuestion.id}</h1></div>
+                    <form name="formAnswers" method="post" class="form-answers">
+                        <c:forEach begin="0" step="1" varStatus="i" items="${game.lastQuestion.answers}"
+                                   var="answer">
+                            <input name="checkAnswer" class="form-answers_checkbox-answer" access="false"
+                                   id="checkbox-answer" value="${answer.id}" type="radio">
+                            <label for="checkbox-answer">${answer.answer}</label>
+                            <br>
+                        </c:forEach>
+                            <%--                        <div class="formbuilder-button form-group field-button-1673222921723">--%>
+                        <button type="submit" value="${game.id}" class="btn btn-save"
+                                name="btnSave" access="false"
+                                id="">Button
+                        </button>
+                            <%--                        </div>--%>
+                    </form>
                 </div>
+                </c:when>
+                <c:when test="${game.gameState == 'END'}">
+                    <h1>Игра завершена</h1>
+                </c:when>
+                </c:choose>
             </div>
         </div>
         <%--        </div>--%>

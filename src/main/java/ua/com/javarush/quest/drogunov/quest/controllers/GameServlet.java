@@ -6,9 +6,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import ua.com.javarush.quest.drogunov.quest.exceptions.QuestionNotFoundException;
 import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.dto.QuestDTO;
+import ua.com.javarush.quest.drogunov.quest.model.dto.QuestionDTO;
 import ua.com.javarush.quest.drogunov.quest.model.dto.UserDTO;
+import ua.com.javarush.quest.drogunov.quest.model.entity.GameState;
 import ua.com.javarush.quest.drogunov.quest.repository.GameRepository;
 import ua.com.javarush.quest.drogunov.quest.repository.QuestRepository;
 import ua.com.javarush.quest.drogunov.quest.repository.QuestionRepository;
@@ -19,9 +22,11 @@ import ua.com.javarush.quest.drogunov.quest.util.RepositoryFactory;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @WebServlet(name = "GameServlet", value = "/game")
 public class GameServlet extends HttpServlet {
@@ -34,25 +39,39 @@ public class GameServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //TODO test user id 1
-        Long questId = Long.parseLong(req.getParameter("questId"));
-        HttpSession session = req.getSession();
-        Object userId = session.getAttribute("userId");
-        GameDTO game;
-        if (isNull(userId)) {
-            GameDTO gameDTO = createGameDto(questId);
-            game = gameService.createGuestGame(gameDTO);
-            req.setAttribute("game", game);
+        Enumeration<String> attributeNames = req.getAttributeNames();
+        Map<String, String[]> parameterMap = req.getParameterMap();
+        String gameId = req.getParameter("gameId");
+        GameDTO guestGame;
+        if (isNull(gameId)) {
+            Long questId = Long.parseLong(req.getParameter("questId"));
+            guestGame = gameService.createGuestGame(createGameDto(questId));
         } else {
-            //TODO  доделать для зарегистрированного пользователя
+            guestGame = gameService
+                    .getCurrentGame(GameDTO.builder()
+                            .id(Long.parseLong(gameId))
+                            .build()
+                    );
         }
+        req.setAttribute("game", guestGame);
         req.getRequestDispatcher("/game.jsp").forward(req, resp);
     }
     
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String[]> parameterMap = req.getParameterMap();
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        long userAnswerId = Long.parseLong(req.getParameter("checkAnswer"));
+        long gameId = Long.parseLong(req.getParameter("btnSave"));
+        if (gameService.isTrueAnswer(userAnswerId, gameId)) {
+            gameService.
+                    updateGameData(GameDTO.builder()
+                            .id(gameId)
+                            .build());
+            try {
+                resp.sendRedirect("/game?gameId=" + gameId);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
     
     private GameDTO createGameDto(Long questId) {
@@ -65,6 +84,7 @@ public class GameServlet extends HttpServlet {
                                 .id(questId)
                                 .build()
                 )
+                .gameState(GameState.PLAY)
                 .build();
     }
     

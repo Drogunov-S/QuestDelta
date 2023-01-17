@@ -13,13 +13,16 @@ import java.util.List;
 @ToString
 @Table(name = "games", schema = "quest")
 public class Game extends BaseEntity {
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne
     @JoinColumn(name = "quest_id", referencedColumnName = "id")
     private Quest quest;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "last_question_id")
     private Question lastQuestion;
+    @Column(name = "game_state", columnDefinition = "enum('START', 'PLAY', 'END')")
+    @Enumerated(EnumType.STRING)
+    private GameState gameState;
 }

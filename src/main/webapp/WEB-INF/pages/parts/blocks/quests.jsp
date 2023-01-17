@@ -11,7 +11,7 @@
                              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                              preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
                             <rect width="100%" height="100%" fill="#55595c"></rect>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${quest.name}}</text>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${quest.name}</text>
                         </svg>
                         <div class="card-body">
                             <p class="card-text">${quest.description}</p>

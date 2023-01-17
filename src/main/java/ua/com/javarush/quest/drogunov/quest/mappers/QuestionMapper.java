@@ -7,6 +7,8 @@ import ua.com.javarush.quest.drogunov.quest.model.entity.Question;
 
 import java.util.*;
 
+import static java.util.Objects.isNull;
+
 public class QuestionMapper implements Mapper<Question, QuestionDTO> {
     private final Mapper<Answer, AnswerDTO> answerMapper = new AnswerMapper();
     
@@ -15,30 +17,36 @@ public class QuestionMapper implements Mapper<Question, QuestionDTO> {
         return QuestionDTO.builder()
                 .id(entity.getId())
                 .question(entity.getQuestion())
-                .answers(new HashSet<>(answerMapper.parseEntityAll(entity.getAnswers())))
+                .answers(answerMapper.parseEntityAll(entity.getAnswers()))
                 .trueAnswer(answerMapper.parseEntity(entity.getTrueAnswer()))
                 .build();
     }
     
     @Override
     public List<QuestionDTO> parseEntityAll(Collection<Question> entity) {
-        return (List<QuestionDTO>) entity.stream()
-                .map(question -> QuestionDTO
-                        .builder()
-                        .question(question.getQuestion())
-                        .trueAnswer(answerMapper.parseEntity(question.getTrueAnswer()))
-                        .answers(new HashSet<>(answerMapper.parseEntityAll(question.getAnswers())))
-                        .build())
+        return entity.stream()
+                .map(this::parseEntity)
                 .toList();
     }
     
     @Override
     public Question parseDto(QuestionDTO dto) {
-        return null;
+        if (isNull(dto)) {
+            return null;
+        }
+        //TODO dodelatb
+        Question question = new Question();
+        question.setId(dto.getId());
+        question.setQuestion(isNull(dto.getQuestion()) ? null : dto.getQuestion());
+        question.setAnswers(isNull(dto.getAnswers()) ? null : answerMapper.parseDtoAll(dto.getAnswers()));
+        question.setTrueAnswer(isNull(dto.getTrueAnswer()) ? null : answerMapper.parseDto(dto.getTrueAnswer()));
+        return question;
     }
     
     @Override
-    public List<QuestionDTO> parseDtoAll(Collection<Question> entity) {
-        return null;
+    public List<Question> parseDtoAll(Collection<QuestionDTO> entity) {
+        return entity.stream()
+                .map(this::parseDto)
+                .toList();
     }
 }

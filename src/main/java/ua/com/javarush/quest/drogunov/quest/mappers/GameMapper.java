@@ -11,16 +11,18 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 public class GameMapper implements Mapper<Game, GameDTO> {
-    private UserMapper userMapper = new UserMapper();
-    private QuestMapper questMapper = new QuestMapper();
-    private QuestionMapper questionMapper = new QuestionMapper();
+    private final UserMapper userMapper = new UserMapper();
+    private final QuestMapper questMapper = new QuestMapper();
+    private final QuestionMapper questionMapper = new QuestionMapper();
     
     @Override
     public GameDTO parseEntity(Game entity) {
         return GameDTO.builder()
+                .id(entity.getId())
                 .user(userMapper.parseEntity(entity.getUser()))
                 .quest(questMapper.parseEntity(entity.getQuest()))
                 .lastQuestion(questionMapper.parseEntity(entity.getLastQuestion()))
+                .gameState(entity.getGameState())
                 .build();
     }
     
@@ -39,11 +41,12 @@ public class GameMapper implements Mapper<Game, GameDTO> {
         game.setUser(isNull(dto.getUser()) ? null : userMapper.parseDto(dto.getUser()));
         game.setQuest(isNull(dto.getQuest()) ? null : questMapper.parseDto(dto.getQuest()));
         game.setLastQuestion(isNull(dto.getLastQuestion()) ? null : questionMapper.parseDto(dto.getLastQuestion()));
+        game.setGameState(isNull(dto.getGameState()) ? null : dto.getGameState());
         return game;
     }
     
     @Override
-    public List<GameDTO> parseDtoAll(Collection<Game> entity) {
+    public List<Game> parseDtoAll(Collection<GameDTO> entity) {
         return null;
     }
 }

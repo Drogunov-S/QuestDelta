@@ -16,7 +16,7 @@ public class User extends BaseEntity {
     private String login;
     @Column(name = "password")
     private String password;
-    @Column(name = "role", nullable = false, columnDefinition = "org.hibernate.type.EnumType")
+    @Column(name = "role", nullable = false, columnDefinition = "enum('GUEST', 'USER', 'REDACTOR', 'ADMIN')")
     @Enumerated(EnumType.STRING)
     private Role role;
 }

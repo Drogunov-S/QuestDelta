@@ -10,5 +10,5 @@ public interface Mapper<E, D> {
     
     E parseDto(D dto);
     
-    List<D> parseDtoAll(Collection<E> entity);
+    List<E> parseDtoAll(Collection<D> entity);
 }

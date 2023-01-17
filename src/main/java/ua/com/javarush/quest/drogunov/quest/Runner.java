@@ -24,7 +24,7 @@ public class Runner {
         Answer answer3 = new Answer();
         answer3.setAnswer("Third answer");
 //        answer3.setQuestion(question1);
-        question1.setAnswers(Set.of(answer1, answer2, answer3));
+        question1.setAnswers(List.of(answer1, answer2, answer3));
         question1.setTrueAnswer(answer1);
         Answer answer4 = new Answer();
         answer4.setAnswer("Four answer");
@@ -37,7 +37,7 @@ public class Runner {
 //        answer6.setQuestion(question1);
         Question question2 = new Question();
         question2.setQuestion("Two Question");
-        question2.setAnswers(Set.of(answer4, answer5, answer6));
+        question2.setAnswers(List.of(answer4, answer5, answer6));
         question2.setTrueAnswer(answer4);
         Quest quest = new Quest();
         quest.setAuthor(user);
@@ -48,6 +48,7 @@ public class Runner {
         game.setQuest(quest);
         game.setUser(user);
         game.setLastQuestion(question1);
+//        game.setGameState(GameState.END);
         Session currentSession = DbSession.getSessionFactory().getCurrentSession();
         currentSession.beginTransaction();
         currentSession.save(user);
@@ -68,24 +69,24 @@ public class Runner {
         System.out.println("////////////".repeat(20));
     }
     
-    public static Set<Answer> getAnswer1() {
+    public static List<Answer> getAnswer1() {
         Answer answer1 = new Answer();
         answer1.setAnswer("First answer");
         Answer answer2 = new Answer();
         answer2.setAnswer("Second answer");
         Answer answer3 = new Answer();
         answer3.setAnswer("Third answer");
-        return Set.of(answer1, answer2, answer3);
+        return List.of(answer1, answer2, answer3);
     }
     
-    public static Set<Answer> getAnswer2() {
+    public static List<Answer> getAnswer2() {
         Answer answer1 = new Answer();
         answer1.setAnswer("Four answer");
         Answer answer2 = new Answer();
         answer2.setAnswer("Five answer");
         Answer answer3 = new Answer();
         answer3.setAnswer("Second answer");
-        return Set.of(answer1, answer2, answer3);
+        return List.of(answer1, answer2, answer3);
     }
     
 }

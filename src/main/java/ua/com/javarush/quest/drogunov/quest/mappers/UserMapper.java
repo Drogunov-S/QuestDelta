@@ -12,6 +12,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
     @Override
     public UserDTO parseEntity(User entity) {
         return UserDTO.builder()
+                .id(entity.getId())
                 .login(entity.getLogin())
                 .role(entity.getRole())
                 .build();
@@ -35,7 +36,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
     }
     
     @Override
-    public List<UserDTO> parseDtoAll(Collection<User> entity) {
+    public List<User> parseDtoAll(Collection<UserDTO> entity) {
         return null;
     }
 }
