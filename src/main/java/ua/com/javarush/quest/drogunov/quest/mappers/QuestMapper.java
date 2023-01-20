@@ -7,13 +7,12 @@ import ua.com.javarush.quest.drogunov.quest.model.entity.Quest;
 import ua.com.javarush.quest.drogunov.quest.model.entity.Question;
 import ua.com.javarush.quest.drogunov.quest.model.entity.User;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import static java.util.Objects.isNull;
 
-public class QuestMapper implements Mapper<Quest, QuestDTO> {
+class QuestMapper implements Mapper<Quest, QuestDTO> {
     private final Mapper<User, UserDTO> userMapper = new UserMapper();
     private final Mapper<Question, QuestionDTO> questionMapper = new QuestionMapper();
     
@@ -30,7 +29,7 @@ public class QuestMapper implements Mapper<Quest, QuestDTO> {
     
     @Override
     public List<QuestDTO> parseEntityAll(Collection<Quest> entity) {
-        return (List<QuestDTO>) entity.stream()
+        return entity.stream()
                 .map(this::parseEntity
                 )
                 .toList();

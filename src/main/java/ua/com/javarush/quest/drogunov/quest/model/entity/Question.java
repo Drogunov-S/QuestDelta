@@ -1,14 +1,15 @@
 package ua.com.javarush.quest.drogunov.quest.model.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 @Entity
@@ -28,5 +29,18 @@ public class Question extends BaseEntity {
         return "\nQuestion{" +
                 "question='" + question + '\'' +
                 " } " + super.toString() + this.getClass().getName();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Question question = (Question) o;
+        return getId() != null && Objects.equals(getId(), question.getId());
+    }
+    
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

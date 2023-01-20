@@ -1,3 +1,4 @@
+<%--
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="quest" type="ua.com.javarush.quest.drogunov.quest.model.dto.QuestDTO" scope="request"/>
@@ -5,7 +6,6 @@
 <%@include file="WEB-INF/pages/parts/blocks/header.jsp" %>
 <div class="album py-5 bg-light">
     <div class="container">
-        <%--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">--%>
         <div class="col">
             <div class="card shadow-sm">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -40,8 +40,8 @@
                 </div>
             </div>
         </div>
-        <%--        </div>--%>
     </div>
 </div>
 <%@include file="WEB-INF/pages/parts/blocks/scripts.jsp" %>
 <%@include file="WEB-INF/pages/parts/blocks/footer.jsp" %>
+--%>

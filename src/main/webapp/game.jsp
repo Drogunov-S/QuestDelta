@@ -5,7 +5,6 @@
 <%@include file="WEB-INF/pages/parts/blocks/header.jsp" %>
 <div class="album py-5 bg-light">
     <div class="container">
-        <%--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">--%>
         <div class="col">
             <div class="card shadow-sm">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
@@ -19,7 +18,7 @@
                     <c:when test="${game.gameState != 'END'}">
                     <div class="">
                         <h1 access="false"
-                            id="control-1703961">${game.lastQuestion.question} ${game.lastQuestion.id}</h1></div>
+                            id="control-1703961">${game.lastQuestion.question}</h1></div>
                     <form name="formAnswers" method="post" class="form-answers">
                         <c:forEach begin="0" step="1" varStatus="i" items="${game.lastQuestion.answers}"
                                    var="answer">
@@ -28,14 +27,18 @@
                             <label for="checkbox-answer">${answer.answer}</label>
                             <br>
                         </c:forEach>
-                            <%--                        <div class="formbuilder-button form-group field-button-1673222921723">--%>
                         <button type="submit" value="${game.id}" class="btn btn-save"
                                 name="btnSave" access="false"
-                                id="">Button
+                                id="">Принять
                         </button>
-                            <%--                        </div>--%>
                     </form>
                 </div>
+                <c:if test="${not empty requestScope.error}">
+
+                    <p class="error">
+                        Ошибка: ${requestScope.get("error")}
+                    </p>
+                </c:if>
                 </c:when>
                 <c:when test="${game.gameState == 'END'}">
                     <h1>Игра завершена</h1>
@@ -43,7 +46,6 @@
                 </c:choose>
             </div>
         </div>
-        <%--        </div>--%>
     </div>
 </div>
 <%@include file="WEB-INF/pages/parts/blocks/scripts.jsp" %>

@@ -1,15 +1,18 @@
 package ua.com.javarush.quest.drogunov.quest.model.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode
 @ToString
 @Table(name = "games", schema = "quest")
 public class Game extends BaseEntity {
@@ -25,4 +28,17 @@ public class Game extends BaseEntity {
     @Column(name = "game_state", columnDefinition = "enum('START', 'PLAY', 'END')")
     @Enumerated(EnumType.STRING)
     private GameState gameState;
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Game game = (Game) o;
+        return getId() != null && Objects.equals(getId(), game.getId());
+    }
+    
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

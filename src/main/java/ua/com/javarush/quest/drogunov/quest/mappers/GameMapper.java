@@ -2,15 +2,13 @@ package ua.com.javarush.quest.drogunov.quest.mappers;
 
 import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.Game;
-import ua.com.javarush.quest.drogunov.quest.model.entity.Question;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class GameMapper implements Mapper<Game, GameDTO> {
+class GameMapper implements Mapper<Game, GameDTO> {
     private final UserMapper userMapper = new UserMapper();
     private final QuestMapper questMapper = new QuestMapper();
     private final QuestionMapper questionMapper = new QuestionMapper();

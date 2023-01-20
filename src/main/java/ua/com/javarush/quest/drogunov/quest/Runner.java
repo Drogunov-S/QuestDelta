@@ -1,11 +1,12 @@
 package ua.com.javarush.quest.drogunov.quest;
 
 import org.hibernate.Session;
+import ua.com.javarush.quest.drogunov.quest.mappers.Mapper;
+import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.*;
 import ua.com.javarush.quest.drogunov.quest.util.DbSession;
 
 import java.util.List;
-import java.util.Set;
 
 public class Runner {
     public static void main(String[] args) {
@@ -88,5 +89,4 @@ public class Runner {
         answer3.setAnswer("Second answer");
         return List.of(answer1, answer2, answer3);
     }
-    
 }

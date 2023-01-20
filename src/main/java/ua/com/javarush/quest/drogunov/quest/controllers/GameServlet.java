@@ -5,42 +5,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import ua.com.javarush.quest.drogunov.quest.exceptions.QuestionNotFoundException;
 import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.dto.QuestDTO;
-import ua.com.javarush.quest.drogunov.quest.model.dto.QuestionDTO;
 import ua.com.javarush.quest.drogunov.quest.model.dto.UserDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.GameState;
-import ua.com.javarush.quest.drogunov.quest.repository.GameRepository;
-import ua.com.javarush.quest.drogunov.quest.repository.QuestRepository;
-import ua.com.javarush.quest.drogunov.quest.repository.QuestionRepository;
-import ua.com.javarush.quest.drogunov.quest.repository.UserRepository;
 import ua.com.javarush.quest.drogunov.quest.service.GameService;
-import ua.com.javarush.quest.drogunov.quest.util.DbSession;
-import ua.com.javarush.quest.drogunov.quest.util.RepositoryFactory;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @WebServlet(name = "GameServlet", value = "/game")
 public class GameServlet extends HttpServlet {
-    private final RepositoryFactory repositoryFactory = new RepositoryFactory(DbSession.getSessionFactory());
-    private final GameRepository gameRepository = repositoryFactory.getRepository(GameRepository.class);
-    private final UserRepository userRepository = repositoryFactory.getRepository(UserRepository.class);
-    private final QuestRepository questRepository = repositoryFactory.getRepository(QuestRepository.class);
-    private final QuestionRepository questionRepository = repositoryFactory.getRepository(QuestionRepository.class);
-    private final GameService gameService = new GameService(gameRepository, userRepository, questRepository, questionRepository);
+    private final GameService gameService = new GameService();
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Enumeration<String> attributeNames = req.getAttributeNames();
-        Map<String, String[]> parameterMap = req.getParameterMap();
         String gameId = req.getParameter("gameId");
         GameDTO guestGame;
         if (isNull(gameId)) {
@@ -59,7 +39,7 @@ public class GameServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        long userAnswerId = Long.parseLong(req.getParameter("checkAnswer"));
+            long userAnswerId = Long.parseLong(req.getParameter("checkAnswer"));
         long gameId = Long.parseLong(req.getParameter("btnSave"));
         if (gameService.isTrueAnswer(userAnswerId, gameId)) {
             gameService.
@@ -69,6 +49,14 @@ public class GameServlet extends HttpServlet {
             try {
                 resp.sendRedirect("/game?gameId=" + gameId);
             } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            req.setAttribute("error", "Неверный ответ, попробуй еще раз");
+            try {
+                req.getRequestDispatcher("/quests").forward(req, resp);
+//                req.getRequestDispatcher("/game?gameId=" + gameId).forward(req, resp);
+            } catch (IOException | ServletException e) {
                 throw new RuntimeException(e);
             }
         }

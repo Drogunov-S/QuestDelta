@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Objects.isNull;
 
-public class UserMapper implements Mapper<User, UserDTO> {
+class UserMapper implements Mapper<User, UserDTO> {
     @Override
     public UserDTO parseEntity(User entity) {
         return UserDTO.builder()

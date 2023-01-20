@@ -6,19 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ua.com.javarush.quest.drogunov.quest.model.dto.QuestDTO;
-import ua.com.javarush.quest.drogunov.quest.repository.QuestRepository;
 import ua.com.javarush.quest.drogunov.quest.service.QuestService;
-import ua.com.javarush.quest.drogunov.quest.util.DbSession;
-import ua.com.javarush.quest.drogunov.quest.util.RepositoryFactory;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(displayName = "QuestsServlet", value = {"", "/", "/quests"})
 public class QuestsServlet extends HttpServlet {
-    private final RepositoryFactory repositoryFactory = new RepositoryFactory(DbSession.getSessionFactory());
-    private final QuestRepository questRepository = repositoryFactory.getRepository(QuestRepository.class);
-    private final QuestService questService = new QuestService(questRepository);
+    private final QuestService questService = new QuestService();
     
     
     @Override

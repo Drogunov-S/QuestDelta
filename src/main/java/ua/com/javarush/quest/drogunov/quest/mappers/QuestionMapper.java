@@ -9,7 +9,7 @@ import java.util.*;
 
 import static java.util.Objects.isNull;
 
-public class QuestionMapper implements Mapper<Question, QuestionDTO> {
+class QuestionMapper implements Mapper<Question, QuestionDTO> {
     private final Mapper<Answer, AnswerDTO> answerMapper = new AnswerMapper();
     
     @Override
@@ -34,7 +34,6 @@ public class QuestionMapper implements Mapper<Question, QuestionDTO> {
         if (isNull(dto)) {
             return null;
         }
-        //TODO dodelatb
         Question question = new Question();
         question.setId(dto.getId());
         question.setQuestion(isNull(dto.getQuestion()) ? null : dto.getQuestion());

@@ -9,8 +9,9 @@ import java.util.Map;
 public class RepositoryFactory {
     private final Map<Class<?>, AbstractRepository<?>> repositories;
     
-    public RepositoryFactory(SessionFactory sessionFactory) {
+    public RepositoryFactory() {
         repositories = new HashMap<>();
+        SessionFactory sessionFactory = DbSession.getSessionFactory();
         repositories.put(AnswerRepository.class, new AnswerRepository(sessionFactory));
         repositories.put(GameRepository.class, new GameRepository(sessionFactory));
         repositories.put(QuestionRepository.class, new QuestionRepository(sessionFactory));
@@ -18,6 +19,7 @@ public class RepositoryFactory {
         repositories.put(UserRepository.class, new UserRepository(sessionFactory));
     }
     
+    @SuppressWarnings("unchecked")
     public <V> V getRepository(Class<V> vClass) {
         return (V) repositories.get(vClass);
     }

@@ -12,7 +12,7 @@ import java.util.List;
 public class testQuestion {
     public static void main(String[] args) {
         SessionFactory sessionFactory = DbSession.getSessionFactory();
-        RepositoryFactory repositoryFactory = new RepositoryFactory(sessionFactory);
+        RepositoryFactory repositoryFactory = new RepositoryFactory();
         GameRepository repository = repositoryFactory.getRepository(GameRepository.class);
         sessionFactory.getCurrentSession().beginTransaction();
         Game byId = repository.getById(1L);

@@ -1,7 +1,5 @@
 package ua.com.javarush.quest.drogunov.quest.model.dto;
 
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 

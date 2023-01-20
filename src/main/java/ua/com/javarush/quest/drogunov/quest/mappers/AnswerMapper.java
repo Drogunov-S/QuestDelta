@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Objects.isNull;
 
-public class AnswerMapper implements Mapper<Answer, AnswerDTO> {
+class AnswerMapper implements Mapper<Answer, AnswerDTO> {
     @Override
     public AnswerDTO parseEntity(Answer entity) {
         return AnswerDTO.builder()

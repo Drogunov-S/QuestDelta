@@ -1,7 +1,5 @@
 package ua.com.javarush.quest.drogunov.quest.model.dao;
 
-import org.hibernate.SessionFactory;
-
 import java.util.List;
 
 public interface CrudDb<T> {

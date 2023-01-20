@@ -3,6 +3,5 @@
 <!DOCTYPE html>
 <html>
 <%@include file="blocks/head.jsp"%>
-<%--<c:import url="blocks/head.jsp"/>--%>
 <body class="page">
 <%@include file="blocks/header.jsp"%>
