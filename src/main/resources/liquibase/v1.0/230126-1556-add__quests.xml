@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="230126-1556" author="sergey">
+        <createTable tableName="quests">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_quest_id"/>
+            </column>
+            <column name="name" type="VARCHAR(45)"/>
+            <column name="description" type="TEXT"/>
+            <column name="author_id" type="BIGINT"/>
+            <column name="update_date" type="TIMESTAMP"/>
+            <column name="create_date" type="TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="quests" baseColumnNames="author_id" constraintName="fk_quest_author_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

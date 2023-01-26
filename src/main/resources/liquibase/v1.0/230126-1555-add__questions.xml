@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="230126-1555" author="sergey">
+        <createTable schemaName="quest" tableName="questions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKeyName="PK_QUESTION" primaryKey="true" nullable="false"/>
+            </column>
+            <column name="question" type="TEXT"/>
+            <column name="quest_id" type="BIGINT"/>
+            <column name="true_answer_id" type="BIGINT"/>
+            <column name="update_date" type="TIMESTAMP"/>
+            <column name="create_date" type="TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="questions" baseColumnNames="quest_id"
+                                 constraintName="fk_questions_quest"
+                                 referencedTableName="quests"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="questions" baseColumnNames="true_answer_id"
+                                 constraintName="fk_question_true_answer" referencedTableName="answers"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
