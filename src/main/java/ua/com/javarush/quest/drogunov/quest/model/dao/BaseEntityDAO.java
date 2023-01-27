@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class BaseEntityDAO<T> implements CrudDb<T> {
+public class BaseEntityDAO<T> {
     private final Class<T> aClass;
     private final SessionFactory sessionFactory;
     

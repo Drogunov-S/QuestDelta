@@ -1,7 +1,7 @@
 package ua.com.javarush.quest.drogunov.quest.service;
 
 import ua.com.javarush.quest.drogunov.quest.exceptions.QuestionNotFoundException;
-import ua.com.javarush.quest.drogunov.quest.mappers.Mappers;
+import ua.com.javarush.quest.drogunov.quest.mappers.Mappable;
 import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.*;
 import ua.com.javarush.quest.drogunov.quest.repository.GameRepository;
@@ -18,14 +18,14 @@ public class GameService {
     private final QuestRepository questRepository = repositoryFactory.getRepository(QuestRepository.class);
     
     public GameDTO createGuestGame(GameDTO gameDTO) {
-        Game game = Mappers.game.parseDto(gameDTO);
+        Game game = Mappable.parse.from(gameDTO);
         User user = userRepository.getById(game.getUser().getId());
         Quest quest = questRepository.getById(game.getQuest().getId());
         game.setUser(user);
         game.setQuest(quest);
         game.setLastQuestion(quest.getQuestions().get(0));
         gameRepository.save(game);
-        return Mappers.game.parseEntity(game);
+        return Mappable.parse.from(game);
     }
     
     public void updateGameData(GameDTO gameDTO) {
@@ -51,7 +51,7 @@ public class GameService {
     
     public GameDTO getCurrentGame(GameDTO currentGame) {
         Game game = gameRepository.getById(currentGame.getId());
-        return Mappers.game.parseEntity(game);
+        return Mappable.parse.from(game);
     }
     
 }

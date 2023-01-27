@@ -1,6 +1,6 @@
 package ua.com.javarush.quest.drogunov.quest.service;
 
-import ua.com.javarush.quest.drogunov.quest.mappers.Mappers;
+import ua.com.javarush.quest.drogunov.quest.mappers.Mappable;
 import ua.com.javarush.quest.drogunov.quest.model.dto.QuestDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.Quest;
 import ua.com.javarush.quest.drogunov.quest.repository.QuestRepository;
@@ -14,7 +14,7 @@ public class QuestService {
     
     public List<QuestDTO> getQuests() {
         List<Quest> quests = questRepository.getAll(0, 2);
-        return Mappers.quest.parseEntityAll(quests);
+        return Mappable.parse.from(quests);
     }
     
 }

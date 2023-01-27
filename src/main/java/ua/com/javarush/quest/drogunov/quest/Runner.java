@@ -1,8 +1,6 @@
 package ua.com.javarush.quest.drogunov.quest;
 
 import org.hibernate.Session;
-import ua.com.javarush.quest.drogunov.quest.mappers.Mapper;
-import ua.com.javarush.quest.drogunov.quest.model.dto.GameDTO;
 import ua.com.javarush.quest.drogunov.quest.model.entity.*;
 import ua.com.javarush.quest.drogunov.quest.util.DbSession;
 

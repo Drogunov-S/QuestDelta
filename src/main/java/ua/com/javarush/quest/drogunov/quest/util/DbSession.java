@@ -15,10 +15,10 @@ public class DbSession {
     
     public DbSession() {
         Configuration configuration = new Configuration();
-        Configuration configure = configuration.configure();
-        LiquibaseChecker.updateDataBase(configuration);
-        sessionFactory = configure
+        sessionFactory = configuration
+                .configure()
                 .buildSessionFactory();
+        LiquibaseChecker.updateDataBase(configuration);
         DB = this;
     }
     

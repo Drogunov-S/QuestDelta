@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="230126-2346" author="sergey">
+        <addForeignKeyConstraint baseTableName="answers" baseColumnNames="question_id"
+                                 constraintName="fk_answers_question"
+                                 referencedTableName="questions"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseColumnNames="last_question_id" baseTableName="games" baseTableSchemaName="quest"
+                                 constraintName="FK_GAMES_ON_LAST_QUESTION" referencedColumnNames="id"
+                                 referencedTableName="questions" referencedTableSchemaName="quest"/>
+        <addForeignKeyConstraint baseColumnNames="quest_id" baseTableName="games" baseTableSchemaName="quest"
+                                 constraintName="FK_GAMES_ON_QUEST" referencedColumnNames="id"
+                                 referencedTableName="quests" referencedTableSchemaName="quest"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="games" baseTableSchemaName="quest"
+                                 constraintName="FK_GAMES_ON_USER" referencedColumnNames="id"
+                                 referencedTableName="users" referencedTableSchemaName="quest"/>
+
+        <addForeignKeyConstraint baseTableName="questions" baseColumnNames="quest_id"
+                                 constraintName="fk_questions_quest"
+                                 referencedTableName="quests"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="questions" baseColumnNames="true_answer_id"
+                                 constraintName="fk_question_true_answer" referencedTableName="answers"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="quests" baseColumnNames="author_id" constraintName="fk_quest_author_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>

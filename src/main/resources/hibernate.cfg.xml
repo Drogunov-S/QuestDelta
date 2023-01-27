@@ -9,7 +9,7 @@
         <property name="hibernate.connection.url">jdbc:p6spy:mysql://localhost:3306/quest</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+<!--        <property name="hibernate.hbm2ddl.auto">validate</property>-->
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="ua.com.javarush.quest.drogunov.quest.model.entity.Answer"/>
         <mapping class="ua.com.javarush.quest.drogunov.quest.model.entity.Game"/>

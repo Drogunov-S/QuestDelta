@@ -15,6 +15,5 @@
             <column name="create_date" type="DATETIME"/>
             <column name="update_date" type="DATETIME"/>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="question_id" baseTableName="answers" baseTableSchemaName="quest" constraintName="FK_ANSWERS_ON_QUESTION" referencedColumnNames="id" referencedTableName="questions" referencedTableSchemaName="quest"/>
     </changeSet>
 </databaseChangeLog>

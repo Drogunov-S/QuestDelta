@@ -9,5 +9,8 @@
     <include file="v1.0/230126-1555-add__questions.xml" relativeToChangelogFile="true"/>
     <include file="v1.0/230126-1556-add__quests.xml" relativeToChangelogFile="true"/>
     <include file="v1.0/230126-1557-add__users.xml" relativeToChangelogFile="true"/>
-    <include file="v1.0/data-test/data.xml" relativeToChangelogFile="true"/>
+    <include file="v1.0/230126-2346__FK-db.xml" relativeToChangelogFile="true"/>
+    <changeSet id="test_data" author="sergey">
+        <sqlFile path="liquibase/v1.0/data-test/sql_data.sql"/>
+    </changeSet>
 </databaseChangeLog>
